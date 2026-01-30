@@ -9,7 +9,7 @@ def predict_batch(
     Apply the model at the specified URI for batch inference on the table with name input_table_name,
     writing results to the table with name output_table_name
     """
-    
+    input_table_name = "sunny_uc.default.taxi_scoring_sample"
     table = spark_session.table(input_table_name)
      
     predict = mlflow.pyfunc.spark_udf(

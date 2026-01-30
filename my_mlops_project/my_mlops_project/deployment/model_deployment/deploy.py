@@ -17,7 +17,7 @@ def deploy(model_uri, env):
     :return:
     """
     _, model_name, version = model_uri.split("/")
-    client = MlflowClient()
+    client = MlflowClient(registry_uri="databricks")
     mv = client.get_model_version(model_name, version)
     target_stage = get_deployed_model_stage_for_env(env)
     if mv.current_stage != target_stage:

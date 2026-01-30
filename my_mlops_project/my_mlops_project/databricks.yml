@@ -8,10 +8,10 @@ bundle:
 variables:
   experiment_name:
     description: Experiment name for the model training.
-    default: /Users/${workspace.current_user.userName}/${bundle.target}-my_mlops_project-experiment
+    default: /Users/${workspace.current_user.userName}/${bundle.target}-my_mlops_project-experiment-1
   model_name:
     description: Model name for the model training.
-    default: ${bundle.target}-my_mlops_project-model
+    default: ${bundle.target}-my_mlops_project-model-1
   
     
 include:
@@ -31,16 +31,16 @@ targets:
     default: true
     workspace:
       # TODO: add dev workspace URL
-      host:
+      host: https://adb-984752964297111.11.azuredatabricks.net
 
-  staging:
-    workspace:
-      host: https://westus.azuredatabricks.net
+  # staging:
+  #   workspace:
+  #     host: 
 
   prod:
     workspace:
-      host: https://adb-xxxx.xx.azuredatabricks.net
+      host: https://adb-7405610671248204.4.azuredatabricks.net
 
-  test:
-    workspace:
-      host: https://westus.azuredatabricks.net
+  # test:
+  #   workspace:
+  #     host: 

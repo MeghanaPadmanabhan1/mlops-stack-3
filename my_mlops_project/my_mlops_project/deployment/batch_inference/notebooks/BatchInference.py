@@ -73,8 +73,9 @@ model_uri = f"models:/{model_name}/{stage}"
 
 # COMMAND ----------
 
+import mlflow
 from mlflow import MlflowClient
-
+mlflow.set_registry_uri("databricks")
 # Get model version from stage
 model_version_infos = MlflowClient().search_model_versions("name = '%s'" % model_name)
 model_version = max(
@@ -91,8 +92,8 @@ from datetime import datetime
 ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # COMMAND ----------
-# DBTITLE 1,Load model and run inference
 
+# DBTITLE 1,Load model and run inference
 from predict import predict_batch
 
 predict_batch(spark, model_uri, input_table_name, output_table_name, model_version, ts)

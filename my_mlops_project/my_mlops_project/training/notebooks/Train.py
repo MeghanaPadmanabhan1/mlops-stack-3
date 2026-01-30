@@ -40,7 +40,7 @@ dbutils.library.restartPython()
 # Provide them via DB widgets or notebook arguments.
 
 # Notebook Environment
-dbutils.widgets.dropdown("env", "staging", ["staging", "prod"], "Environment Name")
+dbutils.widgets.dropdown("env", "dev", ["dev", "prod"], "Environment Name")
 env = dbutils.widgets.get("env")
 
 # Path to the Hive-registered Delta table containing the training data.
@@ -70,12 +70,11 @@ model_name = dbutils.widgets.get("model_name")
 
 # COMMAND ----------
 
-# DBTITLE 1, Set experiment
+# DBTITLE 1, Load raw data
 import mlflow
 
 mlflow.set_experiment(experiment_name)# COMMAND ----------
 
-# DBTITLE 1, Load raw data
 training_df = spark.read.format("delta").load(input_table_path)
 training_df.display()
 
@@ -89,6 +88,7 @@ import mlflow.pyfunc
 def get_latest_model_version(model_name):
     latest_version = 1
     mlflow_client = MlflowClient()
+    mlflow_client = MlflowClient(registry_uri="databricks")
     for mv in mlflow_client.search_model_versions(f"name='{model_name}'"):
         version_int = int(mv.version)
         if version_int > latest_version:
@@ -137,6 +137,7 @@ model = lgb.train(param, train_lgb_dataset, num_rounds)
 input_example = X_train.iloc[[0]]
 
 # Log the trained model with MLflow
+mlflow.set_registry_uri("databricks")
 mlflow.lightgbm.log_model(
     model, 
     artifact_path="lgb_model", 
