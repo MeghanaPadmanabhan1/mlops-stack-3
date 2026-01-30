@@ -9,11 +9,11 @@ on:
         required: true
         default: my_mlops_project
 
+      
 env:
-  DATABRICKS_HOST: https://westus.azuredatabricks.net
-  ARM_TENANT_ID: ${{ secrets.STAGING_AZURE_SP_TENANT_ID }}
-  ARM_CLIENT_ID: ${{ secrets.STAGING_AZURE_SP_APPLICATION_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.STAGING_AZURE_SP_CLIENT_SECRET }}
+  DATABRICKS_HOST: https://adb-7405610671248204.4.azuredatabricks.net
+  DATABRICKS_AUTH_TYPE: github-oidc
+  DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_SP_CLIENT_ID }}
   
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
       - name: Update databricks.yml
         id: update
         run: |
-          echo -e "  staging:\n    workspace:\n      host: https://westus.azuredatabricks.net\n\n  prod:\n    workspace:\n      host: https://adb-xxxx.xx.azuredatabricks.net\n\n  test:\n    workspace:\n      host: https://westus.azuredatabricks.net" >> "$(PROJECT_NAME_ALPHA)\databricks.yml"
+          echo -e "  prod:\n    workspace:\n      host: https://adb-7405610671248204.4.azuredatabricks.net\n\n" >> "$(PROJECT_NAME_ALPHA)\databricks.yml"
       - name: Initialize Bundle
         id: initialize
         run: |
