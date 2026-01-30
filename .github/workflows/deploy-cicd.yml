@@ -8,7 +8,9 @@ on:
         description: 'Project Name'
         required: true
         default: my_mlops_project
-
+permissions:
+  id-token: write
+  contents: read
       
 env:
   DATABRICKS_HOST: https://adb-7405610671248204.4.azuredatabricks.net
