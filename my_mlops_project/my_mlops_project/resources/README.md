@@ -11,7 +11,7 @@
 
 ## Intro
 
-### databricks CLI bundles
+### databricks CLI bundles test on feature
 MLOps Stacks ML resources are configured and deployed through [databricks CLI bundles](https://learn.microsoft.com/azure/databricks/dev-tools/cli/bundle-cli).
 The bundle setting file must be expressed in YAML format and must contain at minimum the top-level bundle mapping.
 
