@@ -14,7 +14,10 @@ env:
   DATABRICKS_HOST: https://adb-7405610671248204.4.azuredatabricks.net
   DATABRICKS_AUTH_TYPE: github-oidc
   DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_SP_CLIENT_ID }}
-  
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   cicd:
