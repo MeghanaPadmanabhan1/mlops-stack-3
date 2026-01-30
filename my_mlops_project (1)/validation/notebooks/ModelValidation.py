@@ -78,6 +78,7 @@ dbutils.widgets.text("model_name", "dev-my_mlops_project-model", "Model Name")
 dbutils.widgets.text("model_version", "", "Candidate Model Version")
 
 # COMMAND ----------
+
 run_mode = dbutils.widgets.get("run_mode").lower()
 assert run_mode == "disabled" or run_mode == "dry_run" or run_mode == "enabled"
 
