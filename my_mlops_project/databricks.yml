@@ -11,7 +11,6 @@ variables:
   model_name:
     description: Model name for the model training.
     default: ${bundle.target}-my_mlops_project-model-1
-  
     
 include:
   # Resources folder contains ML artifact resources for the ML project that defines model and experiment
